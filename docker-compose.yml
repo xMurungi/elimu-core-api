@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: elimu
+      POSTGRES_PASSWORD: elimu
+      POSTGRES_DB: elimu
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elimu"]
+      interval: 5s
+      retries: 10
+
+  sqs:
+    image: softwaremill/elasticmq-native
+    ports:
+      - "9324:9324"   # SQS API
+      - "9325:9325"   # web UI to inspect queues
+    volumes:
+      - ./deploy/elasticmq.conf:/opt/elasticmq.conf:ro
+
+volumes:
+  pgdata:
