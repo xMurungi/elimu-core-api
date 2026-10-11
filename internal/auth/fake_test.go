@@ -46,7 +46,7 @@ func TestFakeVerifier_Verify(t *testing.T) {
 
 			// TODO: if got.FirebaseUID != tc.wantUID { t.Errorf(...) }
 			if got.FirebaseUID != tc.wantUID {
-				t.Errorf("Error is: %v", tc.wantUID)
+				t.Errorf("got %q, want %q", got.FirebaseUID, tc.wantUID)
 			}
 
 		})
