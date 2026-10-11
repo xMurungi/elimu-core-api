@@ -1,7 +1,6 @@
 package httpx
 
 import (
-	"slices"
 	"context"
 	"crypto/rand"
 	"encoding/hex"
@@ -9,6 +8,7 @@ import (
 	"log/slog"
 	"net/http"
 	"runtime/debug"
+	"slices"
 	// "strings"
 	"time"
 )
@@ -114,5 +114,3 @@ func Chain(h http.Handler, mws ...func(http.Handler) http.Handler) http.Handler 
 	}
 	return h
 }
-
-// backward loop over slice can be modernized using slices.Backwardslicesbackwarddefault

@@ -10,8 +10,6 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	// "golang.org/x/tools/go/cfg"
-
 	"github.com/xMurungi/elimu-core-api/internal/config"
 	"github.com/xMurungi/elimu-core-api/internal/handlers"
 	"github.com/xMurungi/elimu-core-api/internal/httpx"
