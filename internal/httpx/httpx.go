@@ -1,6 +1,7 @@
 package httpx
 
 import (
+	"slices"
 	"context"
 	"crypto/rand"
 	"encoding/hex"
@@ -108,8 +109,10 @@ func Recover(next http.Handler) http.Handler {
 
 // Chain applies middleware so the FIRST one listed is the outermost.
 func Chain(h http.Handler, mws ...func(http.Handler) http.Handler) http.Handler {
-	for i := len(mws) - 1; i >= 0; i-- {
-		h = mws[i](h)
+	for _, mw := range slices.Backward(mws) {
+		h = mw(h)
 	}
 	return h
 }
+
+// backward loop over slice can be modernized using slices.Backwardslicesbackwarddefault
